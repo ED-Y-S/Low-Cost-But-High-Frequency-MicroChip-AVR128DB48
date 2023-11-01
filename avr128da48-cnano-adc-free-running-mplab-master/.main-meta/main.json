@@ -1,0 +1,58 @@
+{
+    "metaDataVersion": "1.0.0",
+    "category": "com.microchip.ide.project",
+    "content": {
+        "metaDataVersion": "1.3.0",
+        "name": "com.microchip.mcu8.mplabx.project.avr128da48-cnano-adc-free-running-mplab",
+        "version": "1.0.2",
+        "displayName": "Analog-to-Digital Converter (ADC) — Free Running Conversions Using AVR128DA48 Microcontroller",
+        "projectName": "avr128da48-cnano-adc-free-running-mplab",
+        "shortDescription": "This bare-metal application showcases the free running feature of the Analog-to-Digital Converter.",
+        "ide": {
+            "name": "MPLAB X",
+            "semverRange": ">=6.15.0"
+        },
+        "compiler": [
+            {
+                "name": "XC8",
+                "semverRange": "^2.45.0"
+            }
+        ],
+        "dfp": {
+            "name": "AVR-Dx_DFP",
+            "semverRange": "^2.3.272"
+        },
+        "configurator": {
+            "name": "N/A",
+            "semverRange": " "
+        },
+        "device": {
+            "metaDataVersion": "1.0.0",
+            "category": "com.microchip.portal.contentRef",
+            "content": {
+                "metaDataVersion": "1.0.0",
+                "category": "com.microchip.device",
+                "name": "AVR128DA48",
+                "versionRange": "*"
+            }
+        },
+        "author": "Microchip",
+        "peripherals": [
+            "ADC"
+        ],
+        "keywords": [
+            "C programming", "ADC", "Getting Started"
+        ],
+        "additionalData": {
+            "longDescription": {
+                "metaDataVersion": "1.0.0",
+                "category": "com.microchip.portal.fileRef",
+                "content": {
+                    "metaDataVersion": "1.0.0",
+                    "fileName": "./README.md",
+                    "mimeType": "text/markdown"
+                }
+            }
+        }
+    }
+}
