@@ -11,7 +11,7 @@
 */
 
 /*
-© [2022] Microchip Technology Inc. and its subsidiaries.
+? [2023] Microchip Technology Inc. and its subsidiaries.
 
     Subject to your compliance with these terms, you may use Microchip 
     software and any derivatives exclusively with Microchip products. 
@@ -96,27 +96,6 @@ static void USART3_DefaultParityErrorCallback(void);
   Section: USART3  APIs
 */
 
-#if defined(__GNUC__)
-
-int USART3_printCHAR(char character, FILE *stream)
-{
-    while(!(USART3_IsTxReady()));
-    USART3_Write(character);
-    return 0;
-}
-
-FILE USART3_stream = FDEV_SETUP_STREAM(USART3_printCHAR, NULL, _FDEV_SETUP_WRITE);
-
-#elif defined(__ICCAVR__)
-
-int putchar (int outChar)
-{
-    while(!(USART3_IsTxReady()));
-    USART3_Write(outChar);
-    return outChar;
-}
-#endif
-
 void USART3_Initialize(void)
 {
     // Set the USART3 module to the options selected in the user interface.
@@ -149,9 +128,6 @@ void USART3_Initialize(void)
     USART3_OverrunErrorCallbackRegister(USART3_DefaultOverrunErrorCallback);
     USART3_ParityErrorCallbackRegister(USART3_DefaultParityErrorCallback);
     usart3RxLastError.status = 0;  
-#if defined(__GNUC__)
-    stdout = &USART3_stream;
-#endif
 }
 
 void USART3_Deinitialize(void)
