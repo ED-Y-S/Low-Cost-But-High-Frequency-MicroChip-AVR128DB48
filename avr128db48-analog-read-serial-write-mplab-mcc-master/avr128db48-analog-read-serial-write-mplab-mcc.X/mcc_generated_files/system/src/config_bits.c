@@ -5,12 +5,12 @@
  * 
  * @ingroup config_bitsdriver
  * 
- * @brief This file contains the generated Device Configuration Bits file.
+ * @brief This is the generated Device Configuration Bits file.
  *
  * @version Driver Version 1.0.2
 */
 /*
-? [2023] Microchip Technology Inc. and its subsidiaries.
+© [2022] Microchip Technology Inc. and its subsidiaries.
 
     Subject to your compliance with these terms, you may use Microchip 
     software and any derivatives exclusively with Microchip products. 
@@ -30,16 +30,20 @@
     THIS SOFTWARE.
 */
 
+/**
+   Section: Included Files
+ */
 #include <avr/io.h>
 
 /**
- * Configures the Fuse bits.
+ * Configures Fuse bits
  */
+
 FUSES = 
 {
   .BODCFG = ACTIVE_DISABLE_gc | LVL_BODLEVEL0_gc | SAMPFREQ_128Hz_gc | SLEEP_DISABLE_gc,
-  .BOOTSIZE = ,
-  .CODESIZE = ,
+  .BOOTSIZE = 0x0,
+  .CODESIZE = 0x0,
   .OSCCFG = CLKSEL_OSCHF_gc,
   .SYSCFG0 = CRCSEL_CRC16_gc | CRCSRC_NOCRC_gc | RSTPINCFG_GPIO_gc,
   .SYSCFG1 = MVSYSCFG_DUAL_gc | SUT_0MS_gc,

@@ -11,7 +11,7 @@
 */
 
 /*
-? [2023] Microchip Technology Inc. and its subsidiaries.
+� [2022] Microchip Technology Inc. and its subsidiaries.
 
     Subject to your compliance with these terms, you may use Microchip 
     software and any derivatives exclusively with Microchip products. 
@@ -32,6 +32,26 @@
 */
 #include "mcc_generated_files/system/system.h"
 
+#define START_TOKEN 0x03    /* Start Frame Token */
+#define END_TOKEN 0xFC      /* End Frame Token */
+#define ADC_ACCUMULATION 4 /* Number of accumulations chosen for ADC */
+
+
+void USART3_SendByte(const uint8_t data)
+{
+    while(!(USART3_IsTxReady()));		/* Wait until USART3 Data Register Empty */
+    USART3_Write(data);						/* Send byte */
+}
+
+void USART3_send16bitDataStream( const uint16_t data)
+{
+	USART3_SendByte(START_TOKEN);			/* Send start token */
+	USART3_SendByte(data & 0x00FF);			/* Send first 8 bits of measurement (low byte) */
+	USART3_SendByte(data >> 8);					/* Send last 8 bits of measurement (high byte) */
+	USART3_SendByte(END_TOKEN);				/* Send stop token */
+}
+
+
 /*
     Main application
 */
@@ -40,8 +60,12 @@ int main(void)
 {
     SYSTEM_Initialize();
         
-
     while(1)
     {
+		/* When variable is used, it will update value with latest ADC0 result */
+		uint16_t measurement = ADC0_GetConversion(ADC_MUXPOS_AIN4_gc);	
+
+		measurement /= ADC_ACCUMULATION;			/* Divide readout by number of accumulated result chosen */
+		USART3_send16bitDataStream(measurement);	/* Send data stream out on USART3 */
     }
 }
